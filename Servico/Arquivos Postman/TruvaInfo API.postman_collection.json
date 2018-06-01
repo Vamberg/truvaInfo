@@ -1,0 +1,423 @@
+{
+	"info": {
+		"_postman_id": "587b272a-65f4-4d8c-aa21-4b79a3211749",
+		"name": "TruvaInfo API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cadastros",
+			"description": "",
+			"item": [
+				{
+					"name": "Pessoas",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n\t\"nome\" :  \"Phablo Tassio da Silva\",\n\t\"telefone\" : \"991337667\",\n\t\"email\" : \"phablo.tassio@gmail.com\",\n\t\"senha\" : \"a\",\n\t\"endereco\" : {\n\t\t\"numero\" : \"13\",\n\t\t\"cidade\" : \"sobradinho\",\n\t\t\"descricao\" : \"Condominio morada da serra quadra 55 lote 13 casa 04\"\n\t\t\n\t\t\n\t\t\n\t}\n\t\n\t\n\t\n\t\n}"
+						},
+						"url": {
+							"raw": "localhost:8084/pessoas/",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"pessoas",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clientes",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "cc3489c6-4235-49b0-a190-ea32fe4d12f6",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pessoa\" : {\n    \n        \"id\" : 1    \n    },\n    \"usuario\" : {\n        \"id\" : 4\n    }\n    \n}"
+						},
+						"url": {
+							"raw": "localhost:8084/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Funcionarios",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ativo\" : true,\n\t\"pessoa\" : {\n\t\t\"id\" : 1\n\t},\n\t\"usuario\" : {\n\t\t\"id\" : 2\n\t}\n\t\n\t\n\t\n}"
+						},
+						"url": {
+							"raw": "localhost:8084/funcionarios/",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"funcionarios",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrdemServico",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"funcionario\" : { \n\t\t\"id\" : 1\n\t\t\n\t},\n\t\"responsavel\" : {\n\t\t\"id\" : 2\n\t},\n\t\"cliente\" : {\n\t\t\"id\" : 1\n\t},\n\t\"supostoProblema\" : \"Nao liga\",\n\t\"equipamento\" : {\n\t\t\"marca\" : \"samsumg\",\n\t\t\"descricao\" :  \"notbook\",\n\t\t\"modelo\" : \"rv415\",\n\t\t\"numeroSerie\" : \"4878ds4adsac\"\n\t\t\n\t}\n\t\n\t\n\t\n\t\n\t\n}"
+						},
+						"url": {
+							"raw": "localhost:8084/ordem",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"ordem"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Consultas",
+			"description": "",
+			"item": [
+				{
+					"name": "Pessoas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8084/pessoas?page=0&size 3&sort=nome,asc",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"pessoas"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size 3",
+									"value": null
+								},
+								{
+									"key": "sort",
+									"value": "nome,asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Empresa",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8084/empresa/",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"empresa",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Funcionarios",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"pessoa\" : {\n\t\t\"id\" : 1\n\t},\n\t\"usuario\" : {\n\t\t\"id\": 1\n\t},\n\t\"ativo\" : true\n\t\n\t\n\t\n}"
+						},
+						"url": {
+							"raw": "localhost:8084/funcionarios?dataFinal=2018-05-13",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"funcionarios"
+							],
+							"query": [
+								{
+									"key": "dataFinal",
+									"value": "2018-05-13"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8084/clientes",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OrdemServico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "localhost:8084/ordem?responsavel=pha&problema=lento",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"ordem"
+							],
+							"query": [
+								{
+									"key": "responsavel",
+									"value": "pha"
+								},
+								{
+									"key": "problema",
+									"value": "lento"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Atualizacoes",
+			"description": "",
+			"item": [
+				{
+					"name": "Empresa",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cnpj\": \"00000\",\n    \"razaoSocial\": \"\",\n    \"nomeFantasia\": \" \"\n}"
+						},
+						"url": {
+							"raw": "localhost:8084/empresa/",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"empresa",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Funcionarios",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ativo\" : true,\n\t\"pessoa\" : {\n\t\t\"id\" : 1\n\t},\n\t\"usuario\" : {\n\t\t\"id\" : 2\n\t}\n\t\n\t\n\t\n}"
+						},
+						"url": {
+							"raw": "localhost:8084/funcionarios/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"funcionarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clientes",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pessoa\" : {\n    \n        \"id\" : 2    \n    },\n    \"usuario\" : {\n        \"id\" : 4\n    }\n    \n}"
+						},
+						"url": {
+							"raw": "localhost:8084/clientes/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"clientes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pessoas",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"nome\": \"Phablo Tassio da Silva\",\n        \"telefone\": \"991337667\",\n        \"endereco\": {\n            \"id\": 1,\n            \"numero\": \"13\",\n            \"cep\": null,\n            \"cidade\": \"sobradinho\",\n            \"descricao\": \"Condominio morada da serra quadra 55 lote 13 casa 04\"\n        },\n        \"email\": \"phablo.tassio@gmail.com\",\n        \"senha\": \"a\"\n    }"
+						},
+						"url": {
+							"raw": "localhost:8084/pessoas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"pessoas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ordem Servico",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"orcamento\" : \"Trocar \",\n\t\"status\" : \"ORÇAMENTO\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8084/ordem/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"ordem",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

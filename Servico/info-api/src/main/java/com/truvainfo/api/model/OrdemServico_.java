@@ -9,6 +9,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(OrdemServico.class)
 public abstract class OrdemServico_ {
 
+	public static volatile SingularAttribute<OrdemServico, Orcamento> orcamento;
 	public static volatile SingularAttribute<OrdemServico, Cliente> cliente;
 	public static volatile SingularAttribute<OrdemServico, String> supostoProblema;
 	public static volatile SingularAttribute<OrdemServico, Equipamento> equipamento;

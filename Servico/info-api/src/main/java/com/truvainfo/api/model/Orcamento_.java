@@ -9,10 +9,9 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Orcamento.class)
 public abstract class Orcamento_ {
 
-	public static volatile SingularAttribute<Orcamento, LocalDate> data;
-	public static volatile SingularAttribute<Orcamento, Long> id;
-	public static volatile SingularAttribute<Orcamento, OrdemServico> ordemServico;
-	public static volatile SingularAttribute<Orcamento, String> descricao;
+	public static volatile SingularAttribute<Orcamento, String> orcamento;
+	public static volatile SingularAttribute<Orcamento, LocalDate> dataOrcamento;
+	public static volatile SingularAttribute<Orcamento, Status> status;
 
 }
 
