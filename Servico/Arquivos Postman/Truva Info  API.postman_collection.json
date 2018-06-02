@@ -21,7 +21,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\n\t\"nome\" :  \"Phablo Tassio da Silva\",\n\t\"telefone\" : \"991337667\",\n\t\"email\" : \"phablo.tassio@gmail.com\",\n\t\"senha\" : \"a\",\n\t\"endereco\" : {\n\t\t\"numero\" : \"13\",\n\t\t\"cidade\" : \"sobradinho\",\n\t\t\"descricao\" : \"Condominio morada da serra quadra 55 lote 13 casa 04\"\n\t\t\n\t\t\n\t\t\n\t}\n\t\n\t\n\t\n\t\n}"
+							"raw": "{\n\t\n\t\"nome\" :  \"Phablo Tassio da Silva\",\n\t\"telefone\" : \"991337667\",\n\t\"endereco\" : {\n\t\t\"numero\" : \"13\",\n\t\t\"cidade\" : \"sobradinho\",\n\t\t\"descricao\" : \"Condominio morada da serra quadra 55 lote 13 casa 04\"\n\t\t\n\t\t\n\t\t\n\t}\n\t\n\t\n\t\n\t\n}"
 						},
 						"url": {
 							"raw": "localhost:8084/pessoas/",
@@ -61,7 +61,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"pessoa\" : {\n    \n        \"id\" : 1    \n    },\n    \"usuario\" : {\n        \"id\" : 4\n    }\n    \n}"
+							"raw": "{\n    \"pessoa\" : {\n    \n        \"id\" : 1    \n    },\n    \"papel\" : {\n        \"id\" : 4\n    },\n    \n\t\"email\" : \"phablo.tassio@gmail.com\",\n\t\"senha\" : \"a\"\n    \n}"
 						},
 						"url": {
 							"raw": "localhost:8084/clientes",
@@ -88,7 +88,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"ativo\" : true,\n\t\"pessoa\" : {\n\t\t\"id\" : 1\n\t},\n\t\"usuario\" : {\n\t\t\"id\" : 2\n\t}\n\t\n\t\n\t\n}"
+							"raw": "{\n\t\"ativo\" : true,\n\t\"pessoa\" : {\n\t\t\"id\" : 1\n\t},\n\t\"papel\" : {\n\t\t\"id\" : 2\n\t},\n\t\n\t\"email\" : \"phablo.tassio@gmail.com\",\n\t\"senha\" : \"a\"\n\t\n\t\n\t\n}"
 						},
 						"url": {
 							"raw": "localhost:8084/funcionarios/",

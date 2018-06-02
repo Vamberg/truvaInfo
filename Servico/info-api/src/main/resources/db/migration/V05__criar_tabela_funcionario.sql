@@ -6,7 +6,7 @@ CREATE TABLE funcionario (
     senha VARCHAR(50) NOT NULL,
     ativo BOOLEAN NOT NULL,
     foreign key (id_papel) references papel(id),
-    foreign key (id_pessoa) references pessoal(id),
+    foreign key (id_pessoa) references pessoa(id),
     data_admissao date NOT NULL,
     PRIMARY KEY(ID)
     

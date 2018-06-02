@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -76,6 +78,8 @@ public class Funcionario {
 	public void setDataAdmissao(LocalDate dataAdmissao) {
 		this.dataAdmissao = dataAdmissao;
 	}
+	
+	@NotBlank
 	public String getEmail() {
 		return email;
 	}
@@ -84,6 +88,7 @@ public class Funcionario {
 		this.email = email;
 	}
 
+	@NotBlank
 	public String getSenha() {
 		return senha;
 	}
