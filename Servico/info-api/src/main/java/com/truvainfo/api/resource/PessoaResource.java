@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,16 +36,9 @@ public class PessoaResource {
 	@Autowired
 	private PessoaService pessoaService;
 
-	@GetMapping
-	private List<Pessoa> buscarTodos(PessoaFilter pessoaFilter, Pageable pageable) {
-
-		List<Pessoa> pessoas = pessoaRepository.filtrar(pessoaFilter,pageable);
-
-		return pessoas;
-	}
-
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA') and #oauth2.hasScope('write')")
 	@PostMapping
-	private ResponseEntity<Pessoa> salvar(@Valid @RequestBody Pessoa pessoa) {
+	public ResponseEntity<Pessoa> salvar(@Valid @RequestBody Pessoa pessoa) {
 
 		Pessoa pessoaSalva = pessoaRepository.save(pessoa);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(pessoaSalva.getId())
@@ -54,26 +48,37 @@ public class PessoaResource {
 
 	}
 
-	@DeleteMapping("/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	private void deletar(@PathVariable Long id) {
-		pessoaRepository.delete(id);
+	@PreAuthorize("hasAuthority('ROLE_BUSCAR_PESSOA') and #oauth2.hasScope('write')")
+	@GetMapping
+	public List<Pessoa> buscarTodos(PessoaFilter pessoaFilter, Pageable pageable) {
+
+		List<Pessoa> pessoas = pessoaRepository.filtrar(pessoaFilter, pageable);
+
+		return pessoas;
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<Pessoa> atualizar(@PathVariable Long id, @Valid @RequestBody Pessoa pessoa ){
-		Pessoa pessoaSalva = pessoaService.atualizar(id,pessoa);
-		
-		return ResponseEntity.ok(pessoaSalva);
-	}
-	
-	
+	@PreAuthorize("hasAuthority('ROLE_BUSCAR_PESSOA') and #oauth2.hasScope('write')")
 	@GetMapping("/{id}")
-	private ResponseEntity<Pessoa> buscarPeloId(@PathVariable Long id) {
+	public ResponseEntity<Pessoa> buscarPeloId(@PathVariable Long id) {
 		Pessoa pessoa = pessoaService.buscarPeloId(id);
 
 		return ResponseEntity.ok(pessoa);
 
+	}
+
+	@PreAuthorize("hasAuthority('ROLE_ATUALIZAR_PESSOA') and #oauth2.hasScope('write')")
+	@PutMapping("/{id}")
+	public ResponseEntity<Pessoa> atualizar(@PathVariable Long id, @Valid @RequestBody Pessoa pessoa) {
+		Pessoa pessoaSalva = pessoaService.atualizar(id, pessoa);
+
+		return ResponseEntity.ok(pessoaSalva);
+	}
+
+	@PreAuthorize("hasAuthority('ROLE_DELETAR_PESSOA') and #oauth2.hasScope('write')")
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deletar(@PathVariable Long id) {
+		pessoaRepository.delete(id);
 	}
 
 }

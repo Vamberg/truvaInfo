@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,7 @@ public class ClienteResource {
 	@Autowired
 	private ClienteService clienteService;
 
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_CLIENTE') and #oauth2.hasScope('write')")
 	@PostMapping
 	public ResponseEntity<Cliente> salvar(@Valid @RequestBody Cliente cliente) {
 
@@ -46,6 +48,7 @@ public class ClienteResource {
 
 	}
 
+	@PreAuthorize("hasAuthority('ROLE_BUSCAR_CLIENTE') and #oauth2.hasScope('write')")
 	@GetMapping
 	public List<Cliente> buscarTodos(ClienteFilter clienteFilter, Pageable pageable) {
 
@@ -54,6 +57,7 @@ public class ClienteResource {
 		return clientes;
 	}
 
+	@PreAuthorize("hasAuthority('ROLE_BUSCAR_CLIENTE') and #oauth2.hasScope('write')")
 	@GetMapping("/{id}")
 	public ResponseEntity<Cliente> buscarPeloId(@PathVariable Long id) {
 
@@ -62,17 +66,17 @@ public class ClienteResource {
 		return ResponseEntity.ok(cliente);
 
 	}
-	
+	@PreAuthorize("hasAuthority('ROLE_ATUALIZAR_CLIENTE') and #oauth2.hasScope('write')")
 	@PutMapping("/{id}")
-	public ResponseEntity<Cliente> atualizar(@PathVariable Long id, @Valid @RequestBody Cliente cliente){
-		
-		Cliente clienteSalvo = clienteService.atualizar(id,cliente);
-		
+	public ResponseEntity<Cliente> atualizar(@PathVariable Long id, @Valid @RequestBody Cliente cliente) {
+
+		Cliente clienteSalvo = clienteService.atualizar(id, cliente);
+
 		return ResponseEntity.ok(clienteSalvo);
-		
+
 	}
 	
-
+	@PreAuthorize("hasAuthority('ROLE_DELETAR_CLIENTE') and #oauth2.hasScope('write')")
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {

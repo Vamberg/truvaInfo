@@ -8,7 +8,7 @@ CREATE TABLE empresa(
 )Engine=InnoDB default charset = utf8;
 
 
-insert into empresa (nome_fantasia,razao_social,cnpj) values (' ','','00000');
+insert into empresa (nome_fantasia,razao_social,cnpj) values ('Truva Info','','00000');
 
 
 

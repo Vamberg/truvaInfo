@@ -22,7 +22,7 @@ public class EmpresaResource {
 	private EmpresaRepository empresaRepository;
 	
 	@GetMapping
-	private ResponseEntity<Empresa> buscarEmpresa(){
+	public  ResponseEntity<Empresa> buscarEmpresa(){
 		
 		Empresa empresa = empresaRepository.findOne(1L);
 		
@@ -31,7 +31,7 @@ public class EmpresaResource {
 	}
 	
 	@PutMapping
-	private ResponseEntity<Empresa> atualizar(@Valid @RequestBody Empresa empresa){
+	public  ResponseEntity<Empresa> atualizar(@Valid @RequestBody Empresa empresa){
 		
 		Empresa empresaSalva = empresaRepository.findOne(1L);
 		BeanUtils.copyProperties(empresa, empresaSalva, "id");

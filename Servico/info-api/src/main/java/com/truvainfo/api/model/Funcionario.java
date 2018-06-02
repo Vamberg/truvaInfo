@@ -2,7 +2,9 @@ package com.truvainfo.api.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,7 +48,7 @@ public class Funcionario {
 	}
 
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_papel")
 	public Papel getPapel() {
 		return papel;
@@ -79,6 +81,7 @@ public class Funcionario {
 		this.dataAdmissao = dataAdmissao;
 	}
 	
+	@Column(unique=true)
 	@NotBlank
 	public String getEmail() {
 		return email;
@@ -88,6 +91,7 @@ public class Funcionario {
 		this.email = email;
 	}
 
+
 	@NotBlank
 	public String getSenha() {
 		return senha;
@@ -96,6 +100,8 @@ public class Funcionario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
+
 
 	@Override
 	public int hashCode() {

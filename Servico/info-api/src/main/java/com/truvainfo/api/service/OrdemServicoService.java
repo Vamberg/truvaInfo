@@ -32,7 +32,7 @@ public class OrdemServicoService {
 		return ordemServico;
 	}
 
-	private OrdemServico buscarPeloId(Long id) {
+	public OrdemServico buscarPeloId(Long id) {
 		OrdemServico ordemServico = ordemServicoRepository.findOne(id);
 
 		if (ordemServico == null) {

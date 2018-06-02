@@ -6,3 +6,6 @@ CREATE TABLE pessoa (
     foreign key (id_endereco) references endereco(id),
     PRIMARY KEY(id)
 )Engine = INNODB default charset = utf8;
+
+
+insert into pessoa (nome,telefone,id_endereco) values(' ', ' ',1);

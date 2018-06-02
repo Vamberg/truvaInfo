@@ -3,6 +3,7 @@ package com.truvainfo.api.service;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.truvainfo.api.model.Funcionario;
@@ -17,7 +18,7 @@ public class FuncionarioService {
 	public Funcionario atualizar(Long id, Funcionario funcionario) {
 		
 		Funcionario funcionarioSalvo = buscarPeloId(id);
-		BeanUtils.copyProperties(funcionario, funcionarioSalvo, "id");
+		BeanUtils.copyProperties(funcionario, funcionarioSalvo, "id","email");
 	
 		return funcionarioRepository.save(funcionarioSalvo);
 	}
@@ -31,5 +32,14 @@ public class FuncionarioService {
 
 		return funcionario;
 
+	}
+
+	public Funcionario save(Funcionario funcionario) {
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        funcionario.setSenha(encoder.encode(funcionario.getSenha()));
+		Funcionario funcionarioSalvo = funcionarioRepository.save(funcionario);
+		
+		return funcionarioSalvo;
 	}
 }
