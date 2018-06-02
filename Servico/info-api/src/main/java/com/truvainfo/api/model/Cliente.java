@@ -13,10 +13,22 @@ import javax.validation.constraints.NotNull;
 @Table
 public class Cliente {
 	
-	private Pessoa pessoa;
-	private Usuario usuario;
 	private Long id;
 	
+	private Pessoa pessoa;
+	private Papel papel;
+	private String email;
+	private String senha;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@NotNull
 	@OneToOne
 	@JoinColumn(name="id_pessoa")
@@ -26,22 +38,29 @@ public class Cliente {
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
+	
 	@OneToOne
-	@JoinColumn(name="id_usuario")
 	@NotNull
-	public Usuario getUsuario() {
-		return usuario;
+	@JoinColumn(name="id_papel")
+	public Papel getPapel() {
+		return papel;
 	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+
+	public void setPapel(Papel papel) {
+		this.papel = papel;
 	}
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	public Long getId() {
-		return id;
+
+	public String getEmail() {
+		return email;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	@Override
 	public int hashCode() {

@@ -11,14 +11,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 @Entity
-@Table(name = "usuario")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Usuario {
-
+@Table(name="papel")
+public class Papel {
+	
 	private Long id;
 	private String funcao;
 	private List<Permissao> permissoes;
@@ -42,7 +38,7 @@ public class Usuario {
 	}
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "usuario_permissao", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "id_permissao"))
+	@JoinTable(name = "papel_permissao", joinColumns = @JoinColumn(name = "id_papel"), inverseJoinColumns = @JoinColumn(name = "id_permissao"))
 	public List<Permissao> getPermissoes() {
 		return permissoes;
 	}
@@ -51,7 +47,7 @@ public class Usuario {
 		this.permissoes = permissoes;
 	}
 
-	@OneToMany(mappedBy = "usuario")
+	@OneToMany(mappedBy = "papel")
 	public List<Funcionario> getFuncionario() {
 		return funcionario;
 	}
@@ -76,7 +72,7 @@ public class Usuario {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		Papel other = (Papel) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -84,5 +80,7 @@ public class Usuario {
 			return false;
 		return true;
 	}
+
+
 
 }

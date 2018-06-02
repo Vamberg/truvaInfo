@@ -8,9 +8,11 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Cliente.class)
 public abstract class Cliente_ {
 
+	public static volatile SingularAttribute<Cliente, String> senha;
 	public static volatile SingularAttribute<Cliente, Pessoa> pessoa;
-	public static volatile SingularAttribute<Cliente, Usuario> usuario;
 	public static volatile SingularAttribute<Cliente, Long> id;
+	public static volatile SingularAttribute<Cliente, Papel> papel;
+	public static volatile SingularAttribute<Cliente, String> email;
 
 }
 

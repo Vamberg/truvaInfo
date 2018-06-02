@@ -10,7 +10,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Permissao_ {
 
 	public static volatile SingularAttribute<Permissao, Long> id;
-	public static volatile ListAttribute<Permissao, Usuario> cargo;
+	public static volatile ListAttribute<Permissao, Papel> papel;
 	public static volatile SingularAttribute<Permissao, String> descricao;
 
 }

@@ -29,8 +29,7 @@ public class Pessoa {
 	private String nome;
 	private String telefone;
 	private Endereco endereco;
-	private String email;
-	private String senha;
+
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -75,22 +74,6 @@ public class Pessoa {
 	}
 
 
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
 
 	@Override
 	public int hashCode() {

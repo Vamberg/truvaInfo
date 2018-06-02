@@ -19,7 +19,7 @@ public class Permissao {
 	
 	private Long id;
 	private String descricao;
-	private List<Usuario> cargo;
+	private List<Papel> papel;
 	
 	@Id
 	public Long getId() {
@@ -34,14 +34,16 @@ public class Permissao {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
+
 	@ManyToMany(mappedBy="permissoes")
-	public List<Usuario> getCargo() {
-		return cargo;
+	public List<Papel> getPapel() {
+		return papel;
 	}
-	public void setCargo(List<Usuario> cargo) {
-		this.cargo = cargo;
+	public void setPapel(List<Papel> papel) {
+		this.papel = papel;
 	}
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -19,10 +19,10 @@ import org.springframework.util.StringUtils;
 
 import com.truvainfo.api.model.Funcionario;
 import com.truvainfo.api.model.Funcionario_;
+import com.truvainfo.api.model.Papel;
+import com.truvainfo.api.model.Papel_;
 import com.truvainfo.api.model.Pessoa;
 import com.truvainfo.api.model.Pessoa_;
-import com.truvainfo.api.model.Usuario;
-import com.truvainfo.api.model.Usuario_;
 import com.truvainfo.api.repository.filter.FuncionarioFilter;
 
 public class FuncionarioRepositoryImpl implements FuncionarioRepositoryQuery {
@@ -37,8 +37,8 @@ public class FuncionarioRepositoryImpl implements FuncionarioRepositoryQuery {
 		CriteriaQuery<Funcionario> criteria = builder.createQuery(Funcionario.class);
 		Root<Funcionario> root = criteria.from(Funcionario.class);
 		Join<Funcionario, Pessoa> func = (Join<Funcionario, Pessoa>) root.fetch(Funcionario_.pessoa);
-		Join<Funcionario, Usuario> user = (Join<Funcionario, Usuario>) root.fetch(Funcionario_.usuario);
-		Predicate [] predicates = criarRestricoes(root,builder,func,funcionarioFilter,user);
+		Join<Funcionario, Papel> pap = (Join<Funcionario, Papel>) root.fetch(Funcionario_.papel);
+		Predicate [] predicates = criarRestricoes(root,builder,func,funcionarioFilter,pap);
 		criteria.where(predicates);
 		adicionarOrdenacao(pageable, builder, criteria, root);
 		TypedQuery<Funcionario> query = manager.createQuery(criteria);
@@ -59,7 +59,7 @@ public class FuncionarioRepositoryImpl implements FuncionarioRepositoryQuery {
 	}
 
 	private Predicate[] criarRestricoes(Root<Funcionario> root, CriteriaBuilder builder,
-			Join<Funcionario, Pessoa> func, FuncionarioFilter funcionarioFilter, Join<Funcionario, Usuario> user) {
+			Join<Funcionario, Pessoa> func, FuncionarioFilter funcionarioFilter, Join<Funcionario, Papel> pap) {
 		
 		List<Predicate> predicates = new ArrayList<>();
 		
@@ -68,7 +68,7 @@ public class FuncionarioRepositoryImpl implements FuncionarioRepositoryQuery {
 			
 		}
 		if(!StringUtils.isEmpty(funcionarioFilter.getCargo())) {
-			predicates.add(builder.like(builder.lower(user.get(Usuario_.funcao)), "%"+funcionarioFilter.getCargo().toLowerCase()+"%"));
+			predicates.add(builder.like(builder.lower(pap.get(Papel_.funcao)), "%"+funcionarioFilter.getCargo().toLowerCase()+"%"));
 			
 		}
 		

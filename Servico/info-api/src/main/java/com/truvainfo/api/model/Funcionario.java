@@ -22,10 +22,12 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class Funcionario {
 	
 	private Long id;
-	private Usuario usuario;
+	private Papel papel;
 	private Pessoa pessoa;
 	private Boolean ativo;
 	private LocalDate dataAdmissao;
+	private String email;
+	private String senha;
 	
 	public Funcionario() {
 		
@@ -41,14 +43,15 @@ public class Funcionario {
 		this.id = id;
 	}
 
+
 	@ManyToOne
-	@JoinColumn(name="id_usuario")
-	public Usuario getUsuario() {
-		return usuario;
+	@JoinColumn(name="id_papel")
+	public Papel getPapel() {
+		return papel;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setPapel(Papel papel) {
+		this.papel = papel;
 	}
 
 
@@ -73,6 +76,22 @@ public class Funcionario {
 	public void setDataAdmissao(LocalDate dataAdmissao) {
 		this.dataAdmissao = dataAdmissao;
 	}
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
